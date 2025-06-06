@@ -63,7 +63,9 @@ export default function App(params) {
     initialstate
   );
   const numQuestions = questions.length;
-  const maxPossiblePoints = questions.reduce((prev,cur)=> prev + cur.points, 0);
+  const maxPossiblePoints = Array.isArray(questions)
+  ? questions.reduce((prev, cur) => prev + cur.points, 0)
+  : 0;
  // filepath: c:\Users\USER\Desktop\react-quiz\src\App.js
 useEffect(function () {
   fetch("/questions.json")
