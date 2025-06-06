@@ -64,16 +64,17 @@ export default function App(params) {
   );
   const numQuestions = questions.length;
   const maxPossiblePoints = questions.reduce((prev,cur)=> prev + cur.points, 0);
-  useEffect(function () {
-    fetch("http://localhost:8000/questions")
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: "dataReceived", payload: data });
-      })
-      .catch((error) => {
-        dispatch({ type: "dataFailed" });
-      });
-  }, []);
+ // filepath: c:\Users\USER\Desktop\react-quiz\src\App.js
+useEffect(function () {
+  fetch("/questions.json")
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch({ type: "dataReceived", payload: data });
+    })
+    .catch((error) => {
+      dispatch({ type: "dataFailed" });
+    });
+}, []);
     useEffect(() => {
     if (status !== "active") return;
     const interval = setInterval(() => {
